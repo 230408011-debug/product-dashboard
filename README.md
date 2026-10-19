@@ -1,16 +1,34 @@
-# React + Vite
+# Product Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A simple Product Dashboard built with React and Vite for the Web Programming course (Assignment 5).
 
-Currently, two official plugins are available:
+The app shows a hard-coded list of products. The user can show or hide the list with a button and type their name into an input field. All UI behavior is controlled with React state.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## How to run
 
-## React Compiler
+```bash
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Then open `http://localhost:5173` in the browser.
 
-## Expanding the Oxlint configuration
+## File organization
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```
+product-dashboard/
+├── index.html
+├── package.json
+└── src/
+    ├── main.jsx
+    ├── index.css
+    ├── App.jsx
+    ├── ProductList.jsx
+    ├── Product.jsx
+    └── Card.jsx
+```
+
+- `src/App.jsx`: The root component. It holds two state variables created with `useState`: `showProducts` (boolean) and `name` (string). It renders the heading, a toggle button whose text changes between "Show Products" and "Hide Products", a controlled input for the user's name, a paragraph that displays the name, and the `ProductList` component. `ProductList` is rendered only when `showProducts` is true (conditional rendering).
+- `src/ProductList.jsx`: Defines the static array of products (`id`, `title`, `price`). It renders one `Product` for each item using `.map()` and uses the product `id` as the key (not the array index).
+- `src/Product.jsx`: A reusable component that receives `title` and `price` as props and displays them. It has no state, and its content is wrapped inside the `Card` component.
+- `src/Card.jsx`: A layout component that accepts `children` and renders whatever is passed into it. It
